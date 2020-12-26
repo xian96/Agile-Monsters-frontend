@@ -115,7 +115,7 @@ const Landing = () => {
                         <h2>Kuan Lyu</h2>
                      </div>
                      <div className='landing-tm-box-contact'>
-                        <p>Group Manager</p>
+                        <p>Group Member</p>
                         <a target='blanket' href='https://www.linkedin.com/in/kuan-lyu/'>Contact Him</a>
                      </div>
                   </div>
