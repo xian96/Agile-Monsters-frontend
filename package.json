@@ -7,7 +7,7 @@
       "dev": "cd frontend && npm start",
       "build": "cd frontend && npm run build",
       "install-client": "cd frontend && npm install",
-      "heroku-postbuild": "npm run install-client && npm run install-server && npm run build",
+      "heroku-postbuild": "npm run install-client && npm run build",
       "start": "serve -s build -l 8080"
    },
    "author": "Agile Monsters",
