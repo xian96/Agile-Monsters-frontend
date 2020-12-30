@@ -4,7 +4,8 @@ import logo from '../../images/logo.png';
 import axios from 'axios';
 import { AuthContext } from '../../firebase/Auth';
 import { doSignOut } from '../../firebase/FirebaseFunctions';
-const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
+const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function Navigation() {
@@ -19,7 +20,7 @@ export default function Navigation() {
    async function getUrl() {
       if (currentUser && currentUser.displayName) {
          try {
-            const { data } = await axios.get(`${domain}:${port}/users/profile/${currentUser.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}:${port}/users/profile/${currentUser.displayName}`, {
                withCredentials: true
             })
             const { url, auth } = data;
@@ -46,7 +47,7 @@ export default function Navigation() {
 
    const handleSignOut = async () => {
       try {
-         await axios.get(`${domain}:${port}/users/logout`, {
+         await axios.get(`${apiDomain}:${port}/users/logout`, {
             withCredentials: true
          });
          window.location.href = `${domain}`;

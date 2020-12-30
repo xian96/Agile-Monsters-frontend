@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import axios from 'axios';
 import { AuthContext } from '../../firebase/Auth';
-const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
+const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function Map() {
@@ -35,7 +36,7 @@ export default function Map() {
    const getAllLocalGroups = async () => {
       try {
          if (zipCode) {
-            const { data } = await axios.get(`${domain}:${port}/groups/local-groups/${zipCode}`);
+            const { data } = await axios.get(`${apiDomain}:${port}/groups/local-groups/${zipCode}`);
             const { groups } = data;
             // setAllLocalGroups(groups);
             let res = [];
@@ -67,7 +68,7 @@ export default function Map() {
                if (currentUser) {
                   username = currentUser.displayName;
                }
-               const { data } = await axios.get(`${domain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
+               const { data } = await axios.get(`${apiDomain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
                setZipCode(data);
             }, error => {
                throw error;

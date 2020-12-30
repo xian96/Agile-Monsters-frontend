@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../firebase/Auth'
 import axios from 'axios';
 import $ from 'jquery';
-const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
+const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function Gallery(props) {
@@ -34,7 +35,7 @@ export default function Gallery(props) {
    async function getUrl() {
       if (currentUser && currentUser.displayName) {
          try {
-            const { data } = await axios.get(`${domain}:${port}/users/profile/${currentUser.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}:${port}/users/profile/${currentUser.displayName}`, {
                withCredentials: true
             })
             const { url } = data;
@@ -48,7 +49,7 @@ export default function Gallery(props) {
    const getGroups = async () => {
       if (user && user.displayName) {
          try {
-            const { data } = await axios.get(`${domain}:${port}/users/groups/${user.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}:${port}/users/groups/${user.displayName}`, {
                withCredentials: true
             });
             const { groups } = data;
@@ -62,7 +63,7 @@ export default function Gallery(props) {
    const getUserGroup = async () => {
       if (user && user.displayName) {
          try {
-            const { data } = await axios.get(`${domain}:${port}/groups/group/${user.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}:${port}/groups/group/${user.displayName}`, {
                withCredentials: true
             });
             const { groupName, groupId } = data;
@@ -77,7 +78,7 @@ export default function Gallery(props) {
    const getLocalGroups = async (take, skip) => {
       try {
          if (zipCode) {
-            const { data } = await axios.get(`${domain}:${port}/groups/local/${zipCode}?take=${take}&skip=${skip}`);
+            const { data } = await axios.get(`${apiDomain}:${port}/groups/local/${zipCode}?take=${take}&skip=${skip}`);
             const { groups, numLeftOver } = data;
             setLocalGroups(groups);
             setNoLeftOver(numLeftOver);
@@ -90,7 +91,7 @@ export default function Gallery(props) {
    const getAllLocalGroups = async () => {
       try {
          if (zipCode) {
-            const { data } = await axios.get(`${domain}:${port}/groups/local-groups/${zipCode}`);
+            const { data } = await axios.get(`${apiDomain}:${port}/groups/local-groups/${zipCode}`);
             const { groups } = data;
             setAllLocalGroups(groups);
          }
@@ -107,7 +108,7 @@ export default function Gallery(props) {
                if (user) {
                   username = user.displayName;
                }
-               const { data } = await axios.get(`${domain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
+               const { data } = await axios.get(`${apiDomain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
                setZipCode(data);
             }, error => {
             window.location.href = `${domain}/error/Allow Please or Open it again!`;

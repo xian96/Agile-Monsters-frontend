@@ -5,7 +5,8 @@ import defaultGroup from '../images/group-bg.jpg';
 import { AuthContext } from '../firebase/Auth';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
+const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function Creategroup(props) {
@@ -40,7 +41,7 @@ export default function Creategroup(props) {
                   if (currentUser) {
                      username = currentUser.displayName;
                   }
-                  const { data } = await axios.get(`${domain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`, {
+                  const { data } = await axios.get(`${apiDomain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`, {
                      withCredentials: true
                   });
                   setGeoZipcode(data);
@@ -71,7 +72,7 @@ export default function Creategroup(props) {
 
    async function fetchUserByName(username) {
       try {
-         const user = await fetch(`${domain}:${port}/users/getUserByUsername/${username}`, {
+         const user = await fetch(`${apiDomain}:${port}/users/getUserByUsername/${username}`, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -130,7 +131,7 @@ export default function Creategroup(props) {
             throw `Max group number should be bigger than 0!`;
          }
 
-         const response = await fetch(`${domain}:${port}/groups/${user._id}`, {
+         const response = await fetch(`${apiDomain}:${port}/groups/${user._id}`, {
             method: "POST",
             credentials: 'include',
             headers: {

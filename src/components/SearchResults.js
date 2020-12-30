@@ -4,7 +4,8 @@ import Footer from './utilities/Footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { doSignOut } from '../firebase/FirebaseFunctions';
-const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
+const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function SearchResults(props) {
@@ -17,7 +18,7 @@ export default function SearchResults(props) {
 
    async function getSearchResult() {
       try {
-         const { data } = await axios.get(`${domain}:${port}/users/search/${props.match.params.query}`,
+         const { data } = await axios.get(`${apiDomain}:${port}/users/search/${props.match.params.query}`,
             { withCredentials: true }
          );
          const { result, auth } = data;
