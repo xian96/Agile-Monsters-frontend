@@ -6,7 +6,7 @@ import Footer from './utilities/Footer';
 import { doCreateUserWithEmailAndPassword } from '../firebase/FirebaseFunctions';
 const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
 const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
-const port = process.env.EXPRESS_PORT || `8080`;
+const port = process.env.EXPRESS_PORT || ``;
 
 export default function Signup() {
    const iniCheckParameter = {
@@ -36,7 +36,7 @@ export default function Signup() {
 
    const handleSignup = async (e) => {
       e.preventDefault();
-      console.log(`handleSignup${e}`);
+      console.log(e);
       const { username, email, age, zipcode, gender, phone, bio, password } = e.target.elements;
       try {
          const username_v = username.value.trim();
@@ -65,7 +65,7 @@ export default function Signup() {
          // if (!password_v) throw 'No password provided!';
          await doCreateUserWithEmailAndPassword(email_v, password_v, username_v);
 
-         const response = await fetch(`${apiDomain}:${port}/users`, {
+         const response = await fetch(`${apiDomain}${port}/users`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -97,7 +97,7 @@ export default function Signup() {
 
    const usernameBlur = async (e) => {
       e.preventDefault();
-      console.log(`usernameBlur${e}`);
+      console.log(e);
       e.persist();
       e.target.value = e.target.value.trim().toLowerCase();
       const newUsername = e.target.value.trim();
@@ -123,13 +123,13 @@ export default function Signup() {
             });
          }
          else {
-            const response = await fetch(`${apiDomain}:${port}/users/${newUsername}`, {
+            const response = await fetch(`${apiDomain}${port}/users/${newUsername}`, {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json'
                }
             });
-
+            console.log(response);
             if (response.status === 200) {
                const res = await response.json();
                if (!res.noUser) {
@@ -161,7 +161,7 @@ export default function Signup() {
 
    const emailBlur = async (e) => {
       e.preventDefault();
-      console.log(`emailBlur${e}`);
+      console.log(e);
       e.persist();
       e.target.value = e.target.value.trim().toLowerCase();
       const newEmail = e.target.value.trim();
@@ -187,7 +187,7 @@ export default function Signup() {
             });
          }
          else {
-            const response = await fetch(`${apiDomain}:${port}/users/getbyemail/${newEmail}`, {
+            const response = await fetch(`${apiDomain}${port}/users/getbyemail/${newEmail}`, {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json'
@@ -224,7 +224,7 @@ export default function Signup() {
 
    const ageBlur = (e) => {
       e.preventDefault();      
-      console.log(`ageBlur${e}`);
+      console.log(e);
       const newAge = e.target.value.trim();
       const message = document.getElementById('age-message');
       if (!newAge || newAge.length === 0) {
@@ -272,7 +272,7 @@ export default function Signup() {
 
    const zipcodeBlur = (e) => {
       e.preventDefault();
-      console.log(`zipBlur${e}`);
+      console.log(e);
       const newZipcode = e.target.value.trim();
       const message = document.getElementById('zipcode-message');
       if (!newZipcode || newZipcode.length === 0) {
@@ -320,7 +320,7 @@ export default function Signup() {
 
    const phoneBlur = (e) => {
       e.preventDefault();
-      console.log(`phoneBlur${e}`);
+      console.log(e);
       const newPhone = e.target.value.trim();
       const message = document.getElementById('phone-message');
       if (!newPhone || newPhone.length === 0) {
@@ -368,7 +368,7 @@ export default function Signup() {
 
    const passwordBlur = (e) => {
       e.preventDefault();
-      console.log(`passwrodBlur${e}`);
+      console.log(e);
       const newPassword = e.target.value;
       const message = document.getElementById('password-message');
       if (!newPassword || newPassword.length === 0) {
@@ -416,7 +416,7 @@ export default function Signup() {
 
    const confirmPasswordChange = (e) => {
       e.preventDefault();
-      console.log(`conPasswordBlur${e}`);
+      console.log(e);
       const confPassword = e.target.value;
       const message = document.getElementById('password2-message');
       if (!confPassword || confPassword.trim().length === 0) {
