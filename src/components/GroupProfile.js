@@ -40,7 +40,7 @@ export default function Groupprofile(props) {
    //get the group by groupId in the path.
    async function fetchGroupData() {
       try {
-         const group = await fetch(`${apiDomain}:${port}/groups/${props.match.params.groupId}`, {
+         const group = await fetch(`${apiDomain}${port}/groups/${props.match.params.groupId}`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -61,7 +61,7 @@ export default function Groupprofile(props) {
    async function fetchUserData(userId) {
       try {
          // alert(`fetch for the user with id: ${userId}`);
-         const user = await fetch(`${apiDomain}:${port}/users/getbyid/${userId}`, {
+         const user = await fetch(`${apiDomain}${port}/users/getbyid/${userId}`, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -131,7 +131,7 @@ export default function Groupprofile(props) {
       try {
          const { postContent } = e.target.elements;
          const time = new Date().toUTCString();
-         const Result = await fetch(`${apiDomain}:${port}/groups/post/${groupData._id}`, {
+         const Result = await fetch(`${apiDomain}${port}/groups/post/${groupData._id}`, {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -162,7 +162,7 @@ export default function Groupprofile(props) {
    //delete the post in group
    async function handleDeletePost(postId) {
       try {
-         const Result = await fetch(`${apiDomain}:${port}/groups/post/${groupData._id}/${postId}`, {
+         const Result = await fetch(`${apiDomain}${port}/groups/post/${groupData._id}/${postId}`, {
             method: "DELETE",
             credentials: 'include',
             headers: {
@@ -186,7 +186,7 @@ export default function Groupprofile(props) {
    async function handleJoinGroup(email) {
       // alert("handleJoinGroup with: " + email);
       try {
-         let user = await fetch(`${apiDomain}:${port}/users/getuserbyemail/${email}`, {
+         let user = await fetch(`${apiDomain}${port}/users/getuserbyemail/${email}`, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -200,7 +200,7 @@ export default function Groupprofile(props) {
          }
          user = await user.json();
 
-         const groupResult = await fetch(`${apiDomain}:${port}/groups/${groupData._id}/${user._id}`, {
+         const groupResult = await fetch(`${apiDomain}${port}/groups/${groupData._id}/${user._id}`, {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -215,7 +215,7 @@ export default function Groupprofile(props) {
          }
 
          //already did in the groupResult fetch route's function!         //redundancy:
-         // const userResult = await fetch(`${apiDomain}:${port}/users/${user._id}/${groupData._id}`, {
+         // const userResult = await fetch(`${apiDomain}${port}/users/${user._id}/${groupData._id}`, {
          //    method: "POST",
          //    headers: {
          //       'Content-Type': 'application/json'
@@ -238,8 +238,8 @@ export default function Groupprofile(props) {
    //remove member from group
    async function handleMemberDelete(userId) {
       try {
-         // alert("handleMemberDelete groupData._id: " + `${apiDomain}:${port}/groups/${groupData._id}/${userId}`);
-         const groupResult = await fetch(`${apiDomain}:${port}/groups/${groupData._id}/${userId}`, {
+         // alert("handleMemberDelete groupData._id: " + `${apiDomain}${port}/groups/${groupData._id}/${userId}`);
+         const groupResult = await fetch(`${apiDomain}${port}/groups/${groupData._id}/${userId}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: {
@@ -253,7 +253,7 @@ export default function Groupprofile(props) {
             })}`
          }
 
-         const userResult = await fetch(`${apiDomain}:${port}/users/${userId}/${groupData._id}`, {
+         const userResult = await fetch(`${apiDomain}${port}/users/${userId}/${groupData._id}`, {
             method: "DELETE",
             credentials: 'include',
             headers: {

@@ -25,7 +25,7 @@ export default function GroupSetting(props) {
    useEffect(() => {
       async function getGroup() {
          try {
-            const { data } = await axios.get(`${apiDomain}:${port}/groups/manager/${props.match.params.userId}`,
+            const { data } = await axios.get(`${apiDomain}${port}/groups/manager/${props.match.params.userId}`,
                { withCredentials: true });
             const { group } = data;
             setGroup(group);
@@ -108,7 +108,7 @@ export default function GroupSetting(props) {
             if (Object.keys(reqBody).length === 0) {
                throw 'Please change some information!'
             }
-            const response = await fetch(`${apiDomain}:${port}/groups/${group._id}`, {
+            const response = await fetch(`${apiDomain}${port}/groups/${group._id}`, {
                method: "PUT",
                credentials: 'include',
                headers: {
@@ -148,7 +148,7 @@ export default function GroupSetting(props) {
             storage.ref('images').child(newName).getDownloadURL().then(async url => {
                setProfileUrl(url);
                try {
-                  await axios.put(`${apiDomain}:${port}/groups/profile/${group._id}`,
+                  await axios.put(`${apiDomain}${port}/groups/profile/${group._id}`,
                      { url: url }, {
                      withCredentials: true
                   });

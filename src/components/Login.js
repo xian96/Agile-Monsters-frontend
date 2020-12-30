@@ -7,7 +7,7 @@ import { AuthContext } from '../firebase/Auth';
 import Footer from './utilities/Footer';
 const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
 const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
-const port = process.env.EXPRESS_PORT || `8080`;
+const port = process.env.EXPRESS_PORT || ``;
 
 export default function Login() {
    const { currentUser } = useContext(AuthContext);
@@ -54,7 +54,7 @@ export default function Login() {
                password.className = '';
             }
          }
-         await fetch(`${apiDomain}:${port}/users/login`, {
+         await fetch(`${apiDomain}${port}/users/login`, {
             credentials: "include",
             method: "POST",
             headers: {

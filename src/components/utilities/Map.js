@@ -36,7 +36,7 @@ export default function Map() {
    const getAllLocalGroups = async () => {
       try {
          if (zipCode) {
-            const { data } = await axios.get(`${apiDomain}:${port}/groups/local-groups/${zipCode}`);
+            const { data } = await axios.get(`${apiDomain}${port}/groups/local-groups/${zipCode}`);
             const { groups } = data;
             // setAllLocalGroups(groups);
             let res = [];
@@ -68,7 +68,7 @@ export default function Map() {
                if (currentUser) {
                   username = currentUser.displayName;
                }
-               const { data } = await axios.get(`${apiDomain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
+               const { data } = await axios.get(`${apiDomain}${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
                setZipCode(data);
             }, error => {
                throw error;

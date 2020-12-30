@@ -35,7 +35,7 @@ export default function Gallery(props) {
    async function getUrl() {
       if (currentUser && currentUser.displayName) {
          try {
-            const { data } = await axios.get(`${apiDomain}:${port}/users/profile/${currentUser.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}${port}/users/profile/${currentUser.displayName}`, {
                withCredentials: true
             })
             const { url } = data;
@@ -49,7 +49,7 @@ export default function Gallery(props) {
    const getGroups = async () => {
       if (user && user.displayName) {
          try {
-            const { data } = await axios.get(`${apiDomain}:${port}/users/groups/${user.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}${port}/users/groups/${user.displayName}`, {
                withCredentials: true
             });
             const { groups } = data;
@@ -63,7 +63,7 @@ export default function Gallery(props) {
    const getUserGroup = async () => {
       if (user && user.displayName) {
          try {
-            const { data } = await axios.get(`${apiDomain}:${port}/groups/group/${user.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}${port}/groups/group/${user.displayName}`, {
                withCredentials: true
             });
             const { groupName, groupId } = data;
@@ -78,7 +78,7 @@ export default function Gallery(props) {
    const getLocalGroups = async (take, skip) => {
       try {
          if (zipCode) {
-            const { data } = await axios.get(`${apiDomain}:${port}/groups/local/${zipCode}?take=${take}&skip=${skip}`);
+            const { data } = await axios.get(`${apiDomain}${port}/groups/local/${zipCode}?take=${take}&skip=${skip}`);
             const { groups, numLeftOver } = data;
             setLocalGroups(groups);
             setNoLeftOver(numLeftOver);
@@ -91,7 +91,7 @@ export default function Gallery(props) {
    const getAllLocalGroups = async () => {
       try {
          if (zipCode) {
-            const { data } = await axios.get(`${apiDomain}:${port}/groups/local-groups/${zipCode}`);
+            const { data } = await axios.get(`${apiDomain}${port}/groups/local-groups/${zipCode}`);
             const { groups } = data;
             setAllLocalGroups(groups);
          }
@@ -108,7 +108,7 @@ export default function Gallery(props) {
                if (user) {
                   username = user.displayName;
                }
-               const { data } = await axios.get(`${apiDomain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
+               const { data } = await axios.get(`${apiDomain}${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`);
                setZipCode(data);
             }, error => {
             window.location.href = `${domain}/error/Allow Please or Open it again!`;

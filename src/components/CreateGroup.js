@@ -41,7 +41,7 @@ export default function Creategroup(props) {
                   if (currentUser) {
                      username = currentUser.displayName;
                   }
-                  const { data } = await axios.get(`${apiDomain}:${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`, {
+                  const { data } = await axios.get(`${apiDomain}${port}/zipcodeApi/${position.coords.latitude}/${position.coords.longitude}/${username}`, {
                      withCredentials: true
                   });
                   setGeoZipcode(data);
@@ -72,7 +72,7 @@ export default function Creategroup(props) {
 
    async function fetchUserByName(username) {
       try {
-         const user = await fetch(`${apiDomain}:${port}/users/getUserByUsername/${username}`, {
+         const user = await fetch(`${apiDomain}${port}/users/getUserByUsername/${username}`, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -131,7 +131,7 @@ export default function Creategroup(props) {
             throw `Max group number should be bigger than 0!`;
          }
 
-         const response = await fetch(`${apiDomain}:${port}/groups/${user._id}`, {
+         const response = await fetch(`${apiDomain}${port}/groups/${user._id}`, {
             method: "POST",
             credentials: 'include',
             headers: {

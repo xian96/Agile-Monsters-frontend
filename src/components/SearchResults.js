@@ -18,7 +18,7 @@ export default function SearchResults(props) {
 
    async function getSearchResult() {
       try {
-         const { data } = await axios.get(`${apiDomain}:${port}/users/search/${props.match.params.query}`,
+         const { data } = await axios.get(`${apiDomain}${port}/users/search/${props.match.params.query}`,
             { withCredentials: true }
          );
          const { result, auth } = data;

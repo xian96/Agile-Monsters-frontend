@@ -19,7 +19,7 @@ export default function ProfileForm() {
       // document.getElementById("upload-profile-btn").addEventListener("click", createGroup);
       async function getUrl() {
          try {
-            const { data } = await axios.get(`${apiDomain}:${port}/users/profile/${currentUser.displayName}`, {
+            const { data } = await axios.get(`${apiDomain}${port}/users/profile/${currentUser.displayName}`, {
                withCredentials: true
             })
             const { url, auth } = data;
@@ -35,7 +35,7 @@ export default function ProfileForm() {
       async function getUserData() {
          if (currentUser && currentUser.displayName) {
             try {
-               const { data } = await axios.get(`${apiDomain}:${port}/users/getUserByName/${currentUser.displayName}`, {
+               const { data } = await axios.get(`${apiDomain}${port}/users/getUserByName/${currentUser.displayName}`, {
                   withCredentials: true
                });
                const { user } = data;

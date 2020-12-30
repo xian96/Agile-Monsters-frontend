@@ -14,7 +14,7 @@ export default function ProfileForm(props) {
         // document.getElementById("upload-profile-btn").addEventListener("click", createGroup);
         async function get() {
             try {
-                const user = await fetch(`${apiDomain}:${port}/users/getUserByUsername/${props.username}`, {
+                const user = await fetch(`${apiDomain}${port}/users/getUserByUsername/${props.username}`, {
                     method: "GET",
                     credentials: 'include',
                     headers: {
