@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
 import Footer from './utilities/Footer';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const port = process.env.EXPRESS_PORT || `8080`;
 
 export default function Login() {
    const { currentUser } = useContext(AuthContext);
@@ -52,7 +53,7 @@ export default function Login() {
                password.className = '';
             }
          }
-         await fetch(`${domain}:4000/users/login`, {
+         await fetch(`${domain}:${port}/users/login`, {
             credentials: "include",
             method: "POST",
             headers: {

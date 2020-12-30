@@ -6,6 +6,7 @@ import Navigation from './utilities/Navigation';
 import Footer from './utilities/Footer';
 import { AuthContext } from '../firebase/Auth';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const port = process.env.EXPRESS_PORT || `8080`;
 
 export default function Groupprofile(props) {
    const { currentUser } = useContext(AuthContext);
@@ -38,7 +39,7 @@ export default function Groupprofile(props) {
    //get the group by groupId in the path.
    async function fetchGroupData() {
       try {
-         const group = await fetch(`${domain}:4000/groups/${props.match.params.groupId}`, {
+         const group = await fetch(`${domain}:${port}/groups/${props.match.params.groupId}`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -59,7 +60,7 @@ export default function Groupprofile(props) {
    async function fetchUserData(userId) {
       try {
          // alert(`fetch for the user with id: ${userId}`);
-         const user = await fetch(`${domain}:4000/users/getbyid/${userId}`, {
+         const user = await fetch(`${domain}:${port}/users/getbyid/${userId}`, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -129,7 +130,7 @@ export default function Groupprofile(props) {
       try {
          const { postContent } = e.target.elements;
          const time = new Date().toUTCString();
-         const Result = await fetch(`${domain}:4000/groups/post/${groupData._id}`, {
+         const Result = await fetch(`${domain}:${port}/groups/post/${groupData._id}`, {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -160,7 +161,7 @@ export default function Groupprofile(props) {
    //delete the post in group
    async function handleDeletePost(postId) {
       try {
-         const Result = await fetch(`${domain}:4000/groups/post/${groupData._id}/${postId}`, {
+         const Result = await fetch(`${domain}:${port}/groups/post/${groupData._id}/${postId}`, {
             method: "DELETE",
             credentials: 'include',
             headers: {
@@ -184,7 +185,7 @@ export default function Groupprofile(props) {
    async function handleJoinGroup(email) {
       // alert("handleJoinGroup with: " + email);
       try {
-         let user = await fetch(`${domain}:4000/users/getuserbyemail/${email}`, {
+         let user = await fetch(`${domain}:${port}/users/getuserbyemail/${email}`, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -198,7 +199,7 @@ export default function Groupprofile(props) {
          }
          user = await user.json();
 
-         const groupResult = await fetch(`${domain}:4000/groups/${groupData._id}/${user._id}`, {
+         const groupResult = await fetch(`${domain}:${port}/groups/${groupData._id}/${user._id}`, {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -213,7 +214,7 @@ export default function Groupprofile(props) {
          }
 
          //already did in the groupResult fetch route's function!         //redundancy:
-         // const userResult = await fetch(`${domain}:4000/users/${user._id}/${groupData._id}`, {
+         // const userResult = await fetch(`${domain}:${port}/users/${user._id}/${groupData._id}`, {
          //    method: "POST",
          //    headers: {
          //       'Content-Type': 'application/json'
@@ -236,8 +237,8 @@ export default function Groupprofile(props) {
    //remove member from group
    async function handleMemberDelete(userId) {
       try {
-         // alert("handleMemberDelete groupData._id: " + `${domain}:4000/groups/${groupData._id}/${userId}`);
-         const groupResult = await fetch(`${domain}:4000/groups/${groupData._id}/${userId}`, {
+         // alert("handleMemberDelete groupData._id: " + `${domain}:${port}/groups/${groupData._id}/${userId}`);
+         const groupResult = await fetch(`${domain}:${port}/groups/${groupData._id}/${userId}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: {
@@ -251,7 +252,7 @@ export default function Groupprofile(props) {
             })}`
          }
 
-         const userResult = await fetch(`${domain}:4000/users/${userId}/${groupData._id}`, {
+         const userResult = await fetch(`${domain}:${port}/users/${userId}/${groupData._id}`, {
             method: "DELETE",
             credentials: 'include',
             headers: {

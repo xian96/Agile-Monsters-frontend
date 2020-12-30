@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import profile from '../../images/team-bg.jpeg';
 import { AuthContext } from '../../firebase/Auth';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const port = process.env.EXPRESS_PORT || `8080`;
 
 export default function ProfileForm(props) {
     const { currentUser } = useContext(AuthContext);
@@ -12,7 +13,7 @@ export default function ProfileForm(props) {
         // document.getElementById("upload-profile-btn").addEventListener("click", createGroup);
         async function get() {
             try {
-                const user = await fetch(`${domain}:4000/users/getUserByUsername/${props.username}`, {
+                const user = await fetch(`${domain}:${port}/users/getUserByUsername/${props.username}`, {
                     method: "GET",
                     credentials: 'include',
                     headers: {

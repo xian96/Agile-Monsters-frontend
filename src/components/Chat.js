@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../firebase/Auth';
 import io from 'socket.io-client';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
-const socket = io(`${domain}:4000/chat`,{transports: ['websocket'], upgrade: false});
+const port = process.env.EXPRESS_PORT || `8080`;
+const socket = io(`${domain}:${port}/chat`,{transports: ['websocket'], upgrade: false});
 
 export default function Chat(props) {
     const { currentUser } = useContext(AuthContext);

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { AuthContext } from '../../firebase/Auth';
 import { doSignOut } from '../../firebase/FirebaseFunctions';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const port = process.env.EXPRESS_PORT || `8080`;
 
 export default function Navigation() {
    const { currentUser } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export default function Navigation() {
    async function getUrl() {
       if (currentUser && currentUser.displayName) {
          try {
-            const { data } = await axios.get(`${domain}:4000/users/profile/${currentUser.displayName}`, {
+            const { data } = await axios.get(`${domain}:${port}/users/profile/${currentUser.displayName}`, {
                withCredentials: true
             })
             const { url, auth } = data;
@@ -45,7 +46,7 @@ export default function Navigation() {
 
    const handleSignOut = async () => {
       try {
-         await axios.get(`${domain}:4000/users/logout`, {
+         await axios.get(`${domain}:${port}/users/logout`, {
             withCredentials: true
          });
          window.location.href = `${domain}`;

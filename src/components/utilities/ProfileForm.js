@@ -5,6 +5,7 @@ import { AuthContext } from '../../firebase/Auth';
 import { doSignOut } from '../../firebase/FirebaseFunctions';
 // can't import images outside src folder
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const port = process.env.EXPRESS_PORT || `8080`;
 
 export default function ProfileForm() {
    const { currentUser } = useContext(AuthContext);
@@ -17,7 +18,7 @@ export default function ProfileForm() {
       // document.getElementById("upload-profile-btn").addEventListener("click", createGroup);
       async function getUrl() {
          try {
-            const { data } = await axios.get(`${domain}:4000/users/profile/${currentUser.displayName}`, {
+            const { data } = await axios.get(`${domain}:${port}/users/profile/${currentUser.displayName}`, {
                withCredentials: true
             })
             const { url, auth } = data;
@@ -33,7 +34,7 @@ export default function ProfileForm() {
       async function getUserData() {
          if (currentUser && currentUser.displayName) {
             try {
-               const { data } = await axios.get(`${domain}:4000/users/getUserByName/${currentUser.displayName}`, {
+               const { data } = await axios.get(`${domain}:${port}/users/getUserByName/${currentUser.displayName}`, {
                   withCredentials: true
                });
                const { user } = data;

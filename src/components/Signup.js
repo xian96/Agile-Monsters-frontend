@@ -5,6 +5,7 @@ import { AuthContext } from '../firebase/Auth';
 import Footer from './utilities/Footer';
 import { doCreateUserWithEmailAndPassword } from '../firebase/FirebaseFunctions';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
+const port = process.env.EXPRESS_PORT || `8080`;
 
 export default function Signup() {
    const iniCheckParameter = {
@@ -62,7 +63,7 @@ export default function Signup() {
          // if (!password_v) throw 'No password provided!';
          await doCreateUserWithEmailAndPassword(email_v, password_v, username_v);
 
-         const response = await fetch(`${domain}:4000/users`, {
+         const response = await fetch(`${domain}:${port}/users`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -119,7 +120,7 @@ export default function Signup() {
             });
          }
          else {
-            const response = await fetch(`${domain}:4000/users/${newUsername}`, {
+            const response = await fetch(`${domain}:${port}/users/${newUsername}`, {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json'
@@ -182,7 +183,7 @@ export default function Signup() {
             });
          }
          else {
-            const response = await fetch(`${domain}:4000/users/getbyemail/${newEmail}`, {
+            const response = await fetch(`${domain}:${port}/users/getbyemail/${newEmail}`, {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json'
