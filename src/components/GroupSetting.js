@@ -4,7 +4,7 @@ import { storage } from '../firebase/Firebase';
 import Navigation from './utilities/Navigation';
 import Footer from './utilities/Footer';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
-const port = process.env.EXPRESS_PORT || `8080`;
+const port = process.env.EXPRESS_PORT || ``;
 
 export default function GroupSetting(props) {
    const [groupProfile, setGroupProfile] = useState(null);

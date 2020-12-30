@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import profile from '../../images/team-bg.jpeg';
 import { AuthContext } from '../../firebase/Auth';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
-const port = process.env.EXPRESS_PORT || `8080`;
+const port = process.env.EXPRESS_PORT || ``;
 
 export default function ProfileForm(props) {
     const { currentUser } = useContext(AuthContext);

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { doSignOut } from '../firebase/FirebaseFunctions';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
-const port = process.env.EXPRESS_PORT || `8080`;
+const port = process.env.EXPRESS_PORT || ``;
 
 export default function SearchResults(props) {
    const [user, setUser] = useState(null);

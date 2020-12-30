@@ -6,7 +6,7 @@ import { AuthContext } from '../firebase/Auth';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 const domain = process.env.REACT_APP_DOMAIN || `https://agile-monsters.herokuapp.com`
-const port = process.env.EXPRESS_PORT || `8080`;
+const port = process.env.EXPRESS_PORT || ``;
 
 export default function Creategroup(props) {
    const { currentUser } = useContext(AuthContext);
