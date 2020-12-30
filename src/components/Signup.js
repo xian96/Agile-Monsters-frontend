@@ -36,6 +36,7 @@ export default function Signup() {
 
    const handleSignup = async (e) => {
       e.preventDefault();
+      console.log(`handleSignup${e}`);
       const { username, email, age, zipcode, gender, phone, bio, password } = e.target.elements;
       try {
          const username_v = username.value.trim();
@@ -96,6 +97,7 @@ export default function Signup() {
 
    const usernameBlur = async (e) => {
       e.preventDefault();
+      console.log(`usernameBlur${e}`);
       e.persist();
       e.target.value = e.target.value.trim().toLowerCase();
       const newUsername = e.target.value.trim();
@@ -159,6 +161,7 @@ export default function Signup() {
 
    const emailBlur = async (e) => {
       e.preventDefault();
+      console.log(`emailBlur${e}`);
       e.persist();
       e.target.value = e.target.value.trim().toLowerCase();
       const newEmail = e.target.value.trim();
@@ -220,7 +223,8 @@ export default function Signup() {
    }
 
    const ageBlur = (e) => {
-      e.preventDefault();
+      e.preventDefault();      
+      console.log(`ageBlur${e}`);
       const newAge = e.target.value.trim();
       const message = document.getElementById('age-message');
       if (!newAge || newAge.length === 0) {
@@ -268,6 +272,7 @@ export default function Signup() {
 
    const zipcodeBlur = (e) => {
       e.preventDefault();
+      console.log(`zipBlur${e}`);
       const newZipcode = e.target.value.trim();
       const message = document.getElementById('zipcode-message');
       if (!newZipcode || newZipcode.length === 0) {
@@ -315,6 +320,7 @@ export default function Signup() {
 
    const phoneBlur = (e) => {
       e.preventDefault();
+      console.log(`phoneBlur${e}`);
       const newPhone = e.target.value.trim();
       const message = document.getElementById('phone-message');
       if (!newPhone || newPhone.length === 0) {
@@ -362,6 +368,7 @@ export default function Signup() {
 
    const passwordBlur = (e) => {
       e.preventDefault();
+      console.log(`passwrodBlur${e}`);
       const newPassword = e.target.value;
       const message = document.getElementById('password-message');
       if (!newPassword || newPassword.length === 0) {
@@ -409,6 +416,7 @@ export default function Signup() {
 
    const confirmPasswordChange = (e) => {
       e.preventDefault();
+      console.log(`conPasswordBlur${e}`);
       const confPassword = e.target.value;
       const message = document.getElementById('password2-message');
       if (!confPassword || confPassword.trim().length === 0) {
