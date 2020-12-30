@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm install && npm run build",
-    "start": "serve -s build -l 8080"
+    "start": "serve -s build"
   },
   "eslintConfig": {
     "extends": "react-app"
