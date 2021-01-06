@@ -62,7 +62,7 @@ export default function Login() {
             },
          })
          await doSignInWithEmailAndPassword(email.value, password.value);
-         window.location.href = `${domain}/explore`;
+         window.location.href = `/explore`;//${domain}
       } catch (e) {
          alert(e.message ? e.message : e);
       }
