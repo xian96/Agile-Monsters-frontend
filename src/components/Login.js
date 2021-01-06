@@ -54,6 +54,7 @@ export default function Login() {
                password.className = '';
             }
          }
+         await doSignInWithEmailAndPassword(email.value, password.value);
          await fetch(`${apiDomain}${port}/users/login`, {
             credentials: "include",
             method: "POST",
@@ -61,7 +62,6 @@ export default function Login() {
                'Content-Type': 'application/json'
             },
          })
-         await doSignInWithEmailAndPassword(email.value, password.value);
          window.location.href = `/explore`;//${domain}
       } catch (e) {
          alert(e.message ? e.message : e);
