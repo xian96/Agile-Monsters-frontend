@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../firebase/Auth';
 import io from 'socket.io-client';
 const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
-const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
+const apiDomain = process.env.REACT_APP_API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 const socket = io(`${domain}:${port}/chat`,{transports: ['websocket'], upgrade: false});
 

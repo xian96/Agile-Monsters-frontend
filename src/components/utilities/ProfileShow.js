@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import profile from '../../images/team-bg.jpeg';
 import { AuthContext } from '../../firebase/Auth';
 const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
-const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
+const apiDomain = process.env.REACT_APP_API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function ProfileForm(props) {

@@ -4,7 +4,7 @@ import { storage } from '../firebase/Firebase';
 import Navigation from './utilities/Navigation';
 import Footer from './utilities/Footer';
 const domain = process.env.REACT_APP_DOMAIN || `https://aglie-monsters-frontend.herokuapp.com/`
-const apiDomain = process.env.API_DOMAIN || `https://agile-monsters.herokuapp.com`;
+const apiDomain = process.env.REACT_APP_API_DOMAIN || `https://agile-monsters.herokuapp.com`;
 const port = process.env.EXPRESS_PORT || ``;
 
 export default function GroupSetting(props) {
