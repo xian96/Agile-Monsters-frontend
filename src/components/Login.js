@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
+import Navigation from './utilities/Navigation';
 import { doSignInWithEmailAndPassword } from '../firebase/FirebaseFunctions';
 import { Redirect } from 'react-router-dom';
 import { AuthContext } from '../firebase/Auth';
@@ -54,22 +55,42 @@ export default function Login() {
                password.className = '';
             }
          }
-         await doSignInWithEmailAndPassword(email.value, password.value);
-         const resObj = await fetch(`${apiDomain}${port}/users/login`, {
+         // fetch(`${apiDomain}${port}/users/login`, {
+         //    credentials: "include",
+         //    method: "POST",
+         //    headers: {
+         //       'Content-Type': 'application/json'
+         //    },
+         // })
+         //    .then((responseObject) => {
+         //       if (responseObject.ok) {
+         //          //window.location.href = `/explore`;//${domain}
+         //          return responseObject;
+         //       }
+         //       else {
+         //          throw new Error('login error');
+         //       }
+         //    }
+         //    )
+         //    .then((data) => {
+         //       console.log(data);
+         //       return <Redirect to="/explore" />;
+         //    }
+         //    );
+         const responseObject = await fetch(`${apiDomain}${port}/users/login`, {
             credentials: "include",
             method: "POST",
             headers: {
                'Content-Type': 'application/json'
             },
          });
-         // console.log("response Object: ");console.log(await resObj.headers);
-         // console.log("cookies: ");console.log(document.cookie);
-         if(resObj.ok){
-            //window.location.href = `/explore`;//${domain}
-            return <Redirect to="/explore"/>;
+         const data = await responseObject.json();
+         if (data.authorization !== 'user'){
+            throw new Error('auth error');
          }
-         else 
-            throw new Error('login error');
+         await doSignInWithEmailAndPassword(email.value, password.value);
+         console.log(currentUser);
+
       } catch (e) {
          alert(e.message ? e.message : e);
       }
@@ -80,10 +101,10 @@ export default function Login() {
    }
    return (
       <div>
-         {/* <Navigation /> */}
-         <div className='navigation-bar'>
+         <Navigation />
+         {/* <div className='navigation-bar'>
             <div id='navbar-logo'>
-               <img src={logo} alt="logo"/>
+               <img src={logo} alt="logo" />
             </div>
 
             <div id='navbar-link'>
@@ -95,7 +116,7 @@ export default function Login() {
                </ul>
 
             </div>
-         </div>
+         </div> */}
 
          <div id='login-container'>
             <div id='login-header'>
