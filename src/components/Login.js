@@ -55,14 +55,21 @@ export default function Login() {
             }
          }
          await doSignInWithEmailAndPassword(email.value, password.value);
-         await fetch(`${apiDomain}${port}/users/login`, {
+         const resObj = await fetch(`${apiDomain}${port}/users/login`, {
             credentials: "include",
             method: "POST",
             headers: {
                'Content-Type': 'application/json'
             },
-         })
-         window.location.href = `/explore`;//${domain}
+         });
+         // console.log("response Object: ");console.log(await resObj.headers);
+         // console.log("cookies: ");console.log(document.cookie);
+         if(resObj.ok){
+            //window.location.href = `/explore`;//${domain}
+            return <Redirect to="/explore"/>;
+         }
+         else 
+            throw new Error('login error');
       } catch (e) {
          alert(e.message ? e.message : e);
       }
