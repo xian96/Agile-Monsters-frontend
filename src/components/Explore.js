@@ -21,7 +21,7 @@ export default function Explore() {
             <p>Check what your neighbors are up to</p>
          </div>
          <div className='energy-bar'></div>
-         <div id='google-map' style={{ height: '0.3vh', width: '95%', margin: '1rem auto' }}>
+         <div id='google-map' style={{ height: '65vh', width: '95%', margin: '1rem auto' }}>
             <WrappedMap
                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
                loadingElement={<div style={{ height: '100%' }} />}
