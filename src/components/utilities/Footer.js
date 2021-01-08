@@ -17,8 +17,8 @@ export default function Footer() {
                   </div>
                </div>
                <div id='landing-footer-links'>
-                  <a href='https://github.com/StevensCS554/Final-Project' target='blank'>Our Work</a>
-                  <a target='blanket' href='https://www.linkedin.com/in/luyun-zheng-772283193/'>Service Center</a>
+                  <a href='https://github.com/xian96/Agile-Monsters-frontend/issues' target='blank'>General Inquiry</a>
+                  {/* <a target='blanket' href='https://www.linkedin.com/in/luyun-zheng-772283193/'>Service Center</a> */}
                   {/* <a href='#'>dummy link</a> */}
                </div>
                <div id='landing-footer-locations'>
